@@ -2,8 +2,10 @@ const express = require('express');
 
 const app = express();
 const requestify = require('requestify');
+var userVisitCount = 0;
 
 app.get('/', (req, res) => {
+  
   
   var endResponse = '<h1 style="align: center">List of most recent Confirmed $MIA Mining Transactions</h1><table style="border: 1px solid black;"><thead><tr><th style="border: 1px solid black;">Block Height</th><th style="border: 1px solid black;">Tx_id</th><th style="border: 1px solid black;">Status</th><th style="border: 1px solid black;">Function Type</th><th style="border: 1px solid black;"># of Blocks</th><th style="border: 1px solid black;text-align:left;">Mining Amounts</th></tr></thead><tbody>';
 
@@ -44,6 +46,7 @@ app.get('/', (req, res) => {
       });
 
       function callback () { 
+          userVisitCount++;
           console.log('User Visit Count:'+userVisitCount);
           res.send(endResponse);
       };
